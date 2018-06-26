@@ -1,0 +1,71 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Complete Your Profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form #f="ngForm" (ngSubmit)="onCreateProfile(f)">
+        <ion-list>
+          <ion-item>
+            <ion-label fixed>Name</ion-label>
+            <ion-input
+              type="text"
+              name="name"
+              ngModel
+              required></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-label fixed>University</ion-label>
+              <ion-input
+                type="text"
+                name="university"
+                ngModel
+                required></ion-input>
+            </ion-item>
+          <ion-item>
+              <ion-label fixed>Email</ion-label>
+              <ion-input
+                type="email"
+                name="email"
+                ngModel
+                required></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label fixed>Location</ion-label>
+                <ion-input
+                  type="text"
+                  name="location"
+                  ngModel
+                  required></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label fixed>Gender</ion-label>
+                  <ion-input
+                    type="text"
+                    name="gender"
+                    placeholder="Male/Female"
+                    ngModel
+                    required></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label fixed>Occupation</ion-label>
+                    <ion-input
+                      type="text"
+                      name="occupation"
+                      ngModel
+                      required></ion-input>
+                  </ion-item>
+        </ion-list>
+        <button
+          ion-button
+          type="submit"
+          block
+          [disabled]="!f.valid">Create Profile</button>
+      </form>
+
+</ion-content>

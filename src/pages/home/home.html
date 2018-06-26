@@ -1,0 +1,75 @@
+<ion-header>
+  
+    <ion-navbar>
+        <ion-buttons left>
+            <button ion-button icon-only menuToggle>
+              <ion-icon name="menu"></ion-icon>
+            </button>
+          </ion-buttons>
+      <ion-title text-center>Location Tracker</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+      <ion-card >
+        <ion-card-header>
+            <h3>Time : {{time}}</h3>
+        </ion-card-header>
+          <ion-card-content>
+            <h1><p>Latitude : {{location.lat}} </p></h1>
+            <h1><p>Longitude: {{location.lng}}</p></h1>
+            <h1><p>Speed: {{speed}}</p></h1>
+          </ion-card-content>  
+          </ion-card>
+          <form #f="ngForm" (ngSubmit)="onStart(f)">
+          <ion-list> <ion-item>
+              <ion-label floating><b>Modes of Transportation</b></ion-label>
+              <ion-select name= "mode" ngModel required >
+                <ion-option
+                  *ngFor="let option of selectOptions"
+                  >{{ option }}</ion-option>
+              </ion-select>
+            </ion-item></ion-list>
+         
+
+
+    <ion-grid>
+  
+                <ion-row>
+                    <ion-col>
+                      <button ion-button block color="secondary" type="submit" [disabled]="!f.valid" icon-left>
+                        <ion-icon name="walk"></ion-icon> Start
+                      </button>
+                    </ion-col>
+                    <ion-col>
+                        <button ion-button block color="danger" type="button" icon-left (click)="onStop()">
+                          <ion-icon name="hand"></ion-icon> Stop
+                        </button>
+                      </ion-col>
+                  </ion-row>
+        <ion-row>
+          <ion-col>
+            <button ion-button block outline type="button" icon-left (click)="onLocate()">
+              <ion-icon name="locate"></ion-icon> Locate me
+            </button>
+          </ion-col>
+          <ion-col>
+              <button ion-button block outline type="button" icon-left (click)="onOpenMap()">
+                <ion-icon name="map"></ion-icon> Select on Map
+              </button>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngIf="locationIsset">
+          <ion-col>
+            <agm-map [latitude]="location.lat" [longitude]="location.lng" [zoom]="16">
+              <agm-marker [latitude]="location.lat" [longitude]="location.lng"></agm-marker>
+            </agm-map>
+          </ion-col>
+        </ion-row>
+        </ion-grid>
+        </form>
+  
+  </ion-content>
+  
